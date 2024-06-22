@@ -148,6 +148,7 @@ kitti_test/
 
 # IDE
 .vs
+.vscode/
 
 record/
 output/

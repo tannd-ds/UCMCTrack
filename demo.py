@@ -40,9 +40,9 @@ class Detector:
 
     def load(self,cam_para_file):
         self.mapper = Mapper(cam_para_file,"MOT17")
-        self.model = YOLO('pretrained/yolov8x.pt')
+        self.model = YOLO('pretrained/yolov8l_visdrone.pt')
 
-    def get_dets(self, img,conf_thresh = 0,det_classes = [0]):
+    def get_dets(self, img, conf_thresh = 0, det_classes = [0]):
         
         dets = []
 
@@ -59,7 +59,7 @@ class Detector:
             cls_id  = box.cls.cpu().numpy()[0]
             w = bbox[2] - bbox[0]
             h = bbox[3] - bbox[1]
-            if w <= 10 and h <= 10 or cls_id not in det_classes or conf <= conf_thresh:
+            if w <= 10 and h <= 10 or conf <= conf_thresh:
                 continue
 
             # 新建一个Detection对象
